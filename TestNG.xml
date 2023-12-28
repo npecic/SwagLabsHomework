@@ -1,0 +1,45 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Automation" parallel="tests" thread-count="1">
+
+    <test name="SwagLabs log in">
+        <parameter name="username" value="standard_user"/>
+        <parameter name="password" value="secret_sauce"/>
+        <parameter name="elementMessage" value="//*[@id='inventory_filter_container']/div"/>
+        <parameter name="expectedResult" value="Products"/>
+        <parameter name="elementError" value="//*[@id='login_button_container']/div/form/h3"/>
+        <parameter name="expectedResultError" value="Epic sadface: Sorry, this user has been locked out."/>
+        <classes>
+            <class name="SwagLabs"/>
+        </classes>
+    </test>
+
+
+
+    <test name="Positive Login Test">
+        <parameter name="validUsername" value="standard_user"/>
+        <parameter name="validPassword" value="secret_sauce"/>
+        <parameter name="successElement" value="//*[@id='inventory_filter_container']/div"/>
+        <classes>
+            <class name="SwagLabs"/>
+        </classes>
+    </test>
+
+    <test name="Negative Login Test">
+        <parameter name="invalidUsername" value="invalid_user"/>
+        <parameter name="invalidPassword" value="invalid_password"/>
+        <parameter name="errorElement" value="//*[@id='login_button_container']/div/form/h3"/>
+        <parameter name="expectedErrorMessage" value="Epic sadface: Username and password do not match any user in this service"/>
+        <classes>
+            <class name="SwagLabs"/>
+        </classes>
+    </test>
+
+    <test name="Timeout Test">
+        <parameter name="timeoutUsername" value="timeout_user"/>
+        <parameter name="timeoutPassword" value="timeout_password"/>
+        <parameter name="elementMessage" value="//*[@id='inventory_filter_container']/div"/>
+        <classes>
+            <class name="SwagLabs"/>
+        </classes>
+    </test>
+</suite>
